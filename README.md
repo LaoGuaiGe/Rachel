@@ -18,7 +18,7 @@ ESP32 迷你游戏机，手感很好
 
 视频介绍：[https://www.bilibili.com/video/BV1Ga4y1f7d3/](https://www.bilibili.com/video/BV1Ga4y1f7d3/)
 
-硬件开源：[https://oshwhub.com/eedadada/mason](https://oshwhub.com/eedadada/mason)
+硬件开源：[https://oshwhub.com/eda_rgprdhwej/mason](https://oshwhub.com/eda_rgprdhwej/mason)
 
 
 
