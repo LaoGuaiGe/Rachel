@@ -18,6 +18,7 @@
 #include "app_raylib_games/app_raylib_games.h"
 #include "app_ble_gamepad/app_ble_gamepad.h"
 #include "app_nofrendo/app_nofrendo.h"
+#include "app_multiplay/app_multiplay.h"
 /* Header files locator(Don't remove) */
 
 void rachel_app_install_callback(MOONCAKE::Mooncake* mooncake)
@@ -29,5 +30,6 @@ void rachel_app_install_callback(MOONCAKE::Mooncake* mooncake)
     mooncake->installApp(new MOONCAKE::APPS::AppRaylibgames_Packer);
     mooncake->installApp(new MOONCAKE::APPS::AppMusic_Packer);
     mooncake->installApp(new MOONCAKE::APPS::AppGenshin_Packer);
+    mooncake->installApp(new MOONCAKE::APPS::AppMultiplay_Packer);
     /* Install app locator(Don't remove) */
 }
