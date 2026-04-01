@@ -9,6 +9,7 @@
 #pragma once
 #include <mooncake.h>
 #include "../assets/icons/icons.h"
+#include "network/network_manager.h"
 
 namespace MOONCAKE::APPS
 {
@@ -30,6 +31,10 @@ namespace MOONCAKE::APPS
             int selectedIndex = 0;
             int animValue = 0;
             int scanlineY = 0;
+            MULTIPLAY::NetworkManager network;
+            bool is_network_initialized = false;
+            String scan_ssid;
+            String scan_password;
         };
         Data_t _data;
 
@@ -44,6 +49,8 @@ namespace MOONCAKE::APPS
         void _drawHint(const char* text, int v);
         void _drawControlsHint(int v);
         void _drawFrame();
+
+        void _drawNetworkStatus(int v);
 
     public:
         void onResume() override;

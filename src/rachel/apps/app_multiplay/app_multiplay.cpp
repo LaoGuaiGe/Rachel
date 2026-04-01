@@ -7,7 +7,7 @@
  *
  */
 #include "app_multiplay.h"
-#include "spdlog/spdlog.h"
+#include <stdio.h>
 #include "../../hal/hal.h"
 #include "../assets/theme/theme.h"
 
@@ -21,7 +21,7 @@ static const char* g_main_menu_items[] = {
 
 void AppMultiplay::onResume()
 {
-    spdlog::info("{} onResume", getAppName());
+    printf("AppMultiplay onResume\n");
     _data.state = State_t::MainMenu;
     _data.waitButtonReleased = false;
     _data.selectedIndex = 0;
@@ -286,6 +286,10 @@ void AppMultiplay::onRunning()
         if (currentTime - lastUpdate >= 50) {
             lastUpdate = currentTime;
             _data.animValue++;
+            
+            // Update network status
+            _data.network.update();
+            
             _drawFrame();
             HAL::CanvasUpdate();
         }
@@ -311,9 +315,19 @@ void AppMultiplay::onRunning()
                 if (_data.state == State_t::MainMenu) {
                     if (_data.selectedIndex == 0) {
                         _data.state = State_t::CreateRoom;
+                        if (!_data.is_network_initialized) {
+                            _data.network.init({});
+                            _data.is_network_initialized = true;
+                        }
+                        _data.network.startAP();
                     }
                     else if (_data.selectedIndex == 1) {
                         _data.state = State_t::JoinRoom;
+                        if (!_data.is_network_initialized) {
+                            _data.network.init({});
+                            _data.is_network_initialized = true;
+                        }
+                        _data.network.startSTA();
                     }
                     else if (_data.selectedIndex == 2) {
                         destroyApp();
@@ -346,5 +360,5 @@ void AppMultiplay::onRunning()
 
 void AppMultiplay::onDestroy()
 {
-    spdlog::info("{} onDestroy", getAppName());
+    printf("AppMultiplay onDestroy\n");
 }
